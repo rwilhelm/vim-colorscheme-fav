@@ -6,9 +6,9 @@ let s:default = get(g:, 'colorscheme_fav#default', 'default')
 "
 " Create the favourite file if it does not exist
 "
-echo "&rtp " . &rtp
-echo "s:file " . s:file
-echo "globpath(&rtp, s:file) " . globpath(&rtp, s:file)
+"echo "&rtp " . &rtp
+"echo "s:file " . s:file
+"echo "globpath(&rtp, s:file) " . globpath(&rtp, s:file)
 "if empty((globpath(&rtp, s:file)))
 if !filereadable(s:file)
 	echo "Creating file " . s:file . " " . globpath(&rtp, s:file)
