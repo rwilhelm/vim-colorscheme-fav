@@ -35,7 +35,7 @@ Wrappers for the ones from [vim-colorscheme-switcher](https://github.com/xolox/v
 
 ### Hooks
 Define `ColorschemePostHook()` and/or `ColorschemePreHook()`, e.g.:
-```vimscript
+```viml
 function! ColorschemePostHook()
 	highlight clear LineNr
 	highlight clear SignColumn
@@ -56,4 +56,9 @@ function! ColorschemePostHook()
 	highlight SignifySignDelete guifg=#cc00cc
 	highlight SignatureMarkText guifg=#eeeeee
 endfunction
+```
+
+### Variable Defaults
+```viml
+	let g:colorscheme_fav#file = $VIMHOME . '/colorscheme-fav.lst'
 ```
