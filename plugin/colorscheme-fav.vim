@@ -13,7 +13,6 @@ let colorscheme_switcher_define_mappings = 0
 " Activate the default colorscheme
 " Set by overwriting g:fav_default
 "
-
 call colorscheme_fav#set()
 
 " Commands
