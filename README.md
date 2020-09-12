@@ -2,8 +2,8 @@
 
 ## Features
 
-1. Pre- and post-hooks when changing colorschemes with [vim-colorscheme-switcher](https://github.com/xolox/vim-colorscheme-switcher) so you can do stuff when changing colorschemes, e.g. overwriting highlights.
-2. Ability to store and select favourite colorschemes.
+1. Store and select favourite colorschemes.
+2. Pre- and post-hooks when changing colorschemes with [vim-colorscheme-switcher](https://github.com/xolox/vim-colorscheme-switcher) so you can do stuff when changing colorschemes, e.g. overwriting highlights.
 
 ### Installation with [plug](https://github.com/junegunn/vim-plug):
 
