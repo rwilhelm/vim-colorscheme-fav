@@ -40,9 +40,11 @@ nnoremap<silent> <F7>         :ColorschemeFavNext<CR>
 inoremap<silent> <S-F7> <C-O> :ColorschemeFavPrev<CR>
 nnoremap<silent> <S-F7>       :ColorschemeFavPrev<CR>
 
-" Next/prev colorscheme
+" Next/prev/random colorscheme
 inoremap<silent> <F8>   <C-O> :ColorschemeNext<CR>
 nnoremap<silent> <F8>         :ColorschemeNext<CR>
 inoremap<silent> <S-F8> <C-O> :ColorschemePrev<CR>
 nnoremap<silent> <S-F8>       :ColorschemePrev<CR>
+inoremap<silent> <C-F8> <C-O> :ColorschemeRandom<CR>
+nnoremap<silent> <C-F8>       :ColorschemeRandom<CR>
 
