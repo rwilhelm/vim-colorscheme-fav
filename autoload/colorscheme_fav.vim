@@ -3,17 +3,14 @@ let g:colorscheme_fav#version = '0.3.1'
 let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
 let s:default = get(g:, 'colorscheme_fav#default', 'default')
 
-""
-"" Create the favourite file if it does not exist
-""
-"if empty((globpath(&rtp, s:file)))
-"	echo "Creating file " . s:file
-"	call writefile([], s:file, 'b')
-"	"execute "edit " . expand("%:h") . "/" . s:file
-"else
-"	echo "File found " . s:file
-"endif
-
+"
+" Create the favourite file if it does not exist
+"
+let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
+if empty((globpath(&rtp, s:file)))
+	echo "Creating file " . s:file
+	call writefile([], s:file, 'b')
+endif
 
 "
 " Wrap functions from xolox#colorscheme_switcher
