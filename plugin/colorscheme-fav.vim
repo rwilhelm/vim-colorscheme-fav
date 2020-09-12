@@ -5,6 +5,19 @@ endif
 let g:colorscheme_fav#ok = 1
 
 "
+" Create the favourite file if it does not exist
+"
+let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
+if empty((globpath(&rtp, s:file)))
+	echo "Creating file " . s:file
+	call writefile([], s:file, 'b')
+	"execute "edit " . expand("%:h") . "/" . s:file
+else
+	echo "File found " . s:file
+endif
+
+
+"
 " Disable vim-colorscheme-switcher default mappings
 "
 let colorscheme_switcher_define_mappings = 0
