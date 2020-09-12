@@ -1,6 +1,6 @@
 let g:rw#colorscheme_fav#version = '0.3.1'
 let g:rw#fav_file = $VIMHOME . '/colorscheme-fav.lst'
-let g:rw#fav_default = 'default'
+"let g:rw#fav_default = 'default'
 
 "
 " Wrap functions from xolox#colorscheme_switcher
