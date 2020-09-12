@@ -94,22 +94,17 @@ endfunction
 
 function! rw#colorscheme_fav#pre()
 " {{{
-	if exists('#User#ColorschemeFavPreHook')
-		echo "Found custom pre hook"
-		doautocmd <nomodeline> User ColorschemeFavPreHook
-	else
-		echo "NO custom pre hook found"
+	if exists('*ColorschemePreHook')
+		call ColorschemePreHook()
 	endif
 endfunction
 " }}}
 
 function! rw#colorscheme_fav#post()
 " {{{
-	if exists('#User#ColorschemeFavPostHook')
-		echo "Found custom post hook"
-		doautocmd <nomodeline> User ColorschemeFavPostHook
-	else
-		echo "NO custom post hook found"
+	if exists('*ColorschemePostHook')
+		call ColorschemePostHook()
 	endif
 endfunction
 " }}}
+
