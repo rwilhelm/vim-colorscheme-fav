@@ -1,6 +1,7 @@
 let g:colorscheme_fav#version = '0.3.1'
 
 let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
+let s:default = get(g:, 'colorscheme_fav#default', 'default')
 
 "
 " Wrap functions from xolox#colorscheme_switcher
@@ -36,8 +37,6 @@ endfunction
 
 function! colorscheme_fav#set(...)
 " {{{
-	let default = get([g:colorscheme_fav#default], 0, 'default')
-	echo default
 	let name = get(a:, 1, default)
 	let idx = get(a:, 2, -1)
 	echo "Switching to colorscheme " . name . " [" . idx . "]"
