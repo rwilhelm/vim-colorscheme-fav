@@ -1,8 +1,6 @@
 let g:colorscheme_fav#version = '0.3.1'
-let g:colorscheme_fav#file = $VIMHOME . '/colorscheme-fav.lst'
 
 let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
-echo s:file
 
 "
 " Wrap functions from xolox#colorscheme_switcher

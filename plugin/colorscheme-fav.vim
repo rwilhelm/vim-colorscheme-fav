@@ -5,6 +5,11 @@ endif
 let g:colorscheme_fav#ok = 1
 
 "
+" Disable vim-colorscheme-switcher default mappings
+"
+let colorscheme_switcher_define_mappings = 0
+
+"
 " Activate the default colorscheme
 " Set by overwriting g:fav_default
 "
