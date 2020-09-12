@@ -1,6 +1,8 @@
 let g:colorscheme_fav#version = '0.3.1'
 let g:colorscheme_fav#file = $VIMHOME . '/colorscheme-fav.lst'
 
+let s:file = get(g:, 'colorscheme_fav#file', $VIMHOME . '/colorscheme-fav.lst')
+
 "
 " Wrap functions from xolox#colorscheme_switcher
 "
@@ -53,7 +55,7 @@ endfunction
 function! colorscheme_fav#nextfav()
 " {{{
 	let cur = trim(execute('colorscheme'))
-	let favs = readfile(g:fav_file)
+	let favs = readfile(s:file)
 	let idx = index(favs, cur)
 
 	if idx == -1
@@ -68,7 +70,7 @@ endfunction
 function! colorscheme_fav#prevfav()
 " {{{
 	let cur = trim(execute('colorscheme'))
-	let favs = readfile(g:fav_file)
+	let favs = readfile(s:file)
 	let idx = index(favs, cur)
 
 	if idx == -1
@@ -88,8 +90,8 @@ function! colorscheme_fav#add()
 " {{{
 	let cur = trim(execute('colorscheme'))
 	echo "Saving colorscheme to favourites: " . cur
-	let favs = readfile(g:fav_file)
-	call writefile(uniq(sort(add(favs, cur))), g:fav_file, 'b')
+	let favs = readfile(s:file)
+	call writefile(uniq(sort(add(favs, cur))), s:file, 'b')
 endfunction
 " }}}
 
@@ -97,13 +99,13 @@ function! colorscheme_fav#remove(...)
 " {{{
 	let cur = trim(execute('colorscheme'))
 	echo "Removing colorscheme " . cur . " from favourites"
-	let favs = readfile(g:fav_file)
+	let favs = readfile(s:file)
 	let idx = index(favs, cur)
 	if idx == -1
 		return
 	endif
 	call remove(favs, idx)
-	call writefile(favs, g:fav_file, 'b')
+	call writefile(favs, s:file, 'b')
 endfunction
 " }}}
 

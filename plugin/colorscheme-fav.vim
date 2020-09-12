@@ -1,8 +1,8 @@
-if &cp || exists('g:loaded_colorscheme_fav')
+if &cp || exists('g:colorscheme_fav#ok')
   finish
 endif
 
-let g:loaded_colorscheme_fav = 1
+let g:colorscheme_fav#ok = 1
 
 "
 " Activate the default colorscheme
