@@ -34,9 +34,9 @@ Wrappers for the ones from [vim-colorscheme-switcher](https://github.com/xolox/v
 ```
 
 ### Hooks
-Define `rw#colorscheme_fav#pre()` and/or `rw#colorscheme_fav#pre()`:
+Define `ColorschemePostHook()` and/or `ColorschemePostHook()`, e.g.:
 ```vimscript
-function! rw#colorscheme_fav#pre()
+function! ColorschemePostHook()
 	highlight clear LineNr
 	highlight clear SignColumn
 	highlight clear CursorLineNr
