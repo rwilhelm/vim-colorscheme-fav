@@ -39,7 +39,9 @@ function! colorscheme_fav#set(...)
 " {{{
 	let name = get(a:, 1, s:default)
 	let idx = get(a:, 2, -1)
-	echo "Switching to colorscheme " . name . " [" . idx . "]"
+	if idx != -1
+		echo "Switching to colorscheme " . name . " [" . idx . "]"
+	endif
 	call s:pre_hook()
 	execute 'colorscheme ' . name
 	call s:post_hook()
