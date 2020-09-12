@@ -6,22 +6,22 @@ let g:loaded_colorscheme_fav = 1
 
 "
 " Activate the default colorscheme
-" Set by overwriting g:rw#fav_default
+" Set by overwriting g:fav_default
 "
 
-call rw#colorscheme_fav#set()
+call colorscheme_fav#set()
 
 " Commands
-command! -bar ColorschemeFavAdd call rw#colorscheme_fav#add()
-command! -bar ColorschemeFavRemove call rw#colorscheme_fav#remove()
+command! -bar ColorschemeFavAdd call colorscheme_fav#add()
+command! -bar ColorschemeFavRemove call colorscheme_fav#remove()
 
-command! -bar ColorschemeFavNext call rw#colorscheme_fav#nextfav()
-command! -bar ColorschemeFavPrev call rw#colorscheme_fav#prevfav()
+command! -bar ColorschemeFavNext call colorscheme_fav#nextfav()
+command! -bar ColorschemeFavPrev call colorscheme_fav#prevfav()
 
 " Wraps xolox#colorscheme_switcher
-command! -bar ColorschemeNext call rw#colorscheme_fav#next()
-command! -bar ColorschemePrev call rw#colorscheme_fav#prev()
-command! -bar ColorschemeRandom call rw#colorscheme_fav#random()
+command! -bar ColorschemeNext call colorscheme_fav#next()
+command! -bar ColorschemePrev call colorscheme_fav#prev()
+command! -bar ColorschemeRandom call colorscheme_fav#random()
 
 " Add/remove favourite
 inoremap<silent> <F6>   <C-O> :ColorschemeFavAdd<CR>
