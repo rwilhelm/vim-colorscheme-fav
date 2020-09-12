@@ -1,40 +1,65 @@
 let g:rw#colorscheme_fav#version = '0.3.1'
-
 let g:rw#fav_file = $VIMHOME . '/colorscheme-fav.lst'
-let g:rw#fav_default = 'base16-gruvbox-dark-hard'
+let g:rw#fav_default = 'default'
+
+"
+" Wrap functions from xolox#colorscheme_switcher
+"
 
 function! rw#colorscheme_fav#next(...)
 " {{{
-	call rw#colorscheme_fav#pre()
-	call xolox#colorscheme_switcher#next()
-	call rw#colorscheme_fav#post()
+	call pre_hook()
+  call xolox#colorscheme_switcher#cycle(1)
+	call post_hook()
 endfunction
 " }}}
 
 function! rw#colorscheme_fav#prev(...)
 " {{{
-	call rw#colorscheme_fav#pre()
+	call s:pre_hook()
   call xolox#colorscheme_switcher#cycle(0)
-	call rw#colorscheme_fav#post()
+	call s:post_hook()
 endfunction
 " }}}
 
 function! rw#colorscheme_fav#random(...)
 " {{{
-	call rw#colorscheme_fav#pre()
+	call s:pre_hook()
 	call xolox#colorscheme_switcher#random()
-	call rw#colorscheme_fav#post()
+	call s:post_hook()
 endfunction
 " }}}
+
+"
+" Set colorscheme and apply hooks
+"
 
 function! rw#colorscheme_fav#set(...)
 " {{{
 	let name = get(a:, 1, g:rw#fav_default)
-	let idx = get(a:, 2, 0)
-	echo "Switching to colorscheme " . name . " [" . idx . "]"
-	call rw#colorscheme_fav#pre()
+	echo "Switching to colorscheme " . name . " [" . a:2 . "]"
+	call s:pre_hook()
 	execute 'colorscheme ' . name
-	call rw#colorscheme_fav#post()
+	call s:post_hook()
+endfunction
+" }}}
+
+"
+" Set next/prev favourite colorscheme
+"
+
+function! rw#colorscheme_fav#nextfav()
+" {{{
+	let cur = trim(execute('colorscheme'))
+	let favs = readfile(g:rw#fav_file)
+	let idx = index(favs, cur)
+
+	if idx == -1
+		let idx = index(uniq(sort(add(favs, cur))), cur)
+	endif
+
+	let idx = idx >= len(favs) - 1 ? 0 : idx + 1
+	call rw#colorscheme_fav#set(favs[idx], idx)
 endfunction
 " }}}
 
@@ -43,31 +68,19 @@ function! rw#colorscheme_fav#prevfav()
 	let cur = trim(execute('colorscheme'))
 	let favs = readfile(g:rw#fav_file)
 	let idx = index(favs, cur)
+
 	if idx == -1
-		let idx = index(uniq(sort(add(favs, cur))), cur) - 1
+		let idx = index(uniq(sort(add(favs, cur))), cur)
 	endif
-	if idx < 0
-		let idx = len(favs)
-	endif
-	call rw#colorscheme_fav#set(favs[idx - 1], idx - 1)
+
+	let idx = idx == 0 ? len(favs) - 1 : idx - 1
+	call rw#colorscheme_fav#set(favs[idx], idx)
 endfunction
 " }}}
 
-function! rw#colorscheme_fav#nextfav()
-" {{{
-	let cur = trim(execute('colorscheme'))
-	let favs = readfile(g:rw#fav_file)
-	let idx = index(favs, cur)
-	if idx == -1
-		let idx = index(uniq(sort(add(favs, cur))), cur) + 1
-	endif
-	if idx >= len(favs) - 1
-		let idx = 1
-	endif
-	let name = favs[idx]
-	call rw#colorscheme_fav#set(name, idx)
-endfunction
-" }}}
+"
+" Add/remove favourite
+"
 
 function! rw#colorscheme_fav#add()
 " {{{
@@ -92,7 +105,11 @@ function! rw#colorscheme_fav#remove(...)
 endfunction
 " }}}
 
-function! rw#colorscheme_fav#pre()
+"
+" Use hooks if available
+"
+
+function! s:pre_hook()
 " {{{
 	if exists('*ColorschemePreHook')
 		call ColorschemePreHook()
@@ -100,7 +117,7 @@ function! rw#colorscheme_fav#pre()
 endfunction
 " }}}
 
-function! rw#colorscheme_fav#post()
+function! s:post_hook()
 " {{{
 	if exists('*ColorschemePostHook')
 		call ColorschemePostHook()

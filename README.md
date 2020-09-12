@@ -34,7 +34,7 @@ Wrappers for the ones from [vim-colorscheme-switcher](https://github.com/xolox/v
 ```
 
 ### Hooks
-Define `ColorschemePostHook()` and/or `ColorschemePostHook()`, e.g.:
+Define `ColorschemePostHook()` and/or `ColorschemePreHook()`, e.g.:
 ```vimscript
 function! ColorschemePostHook()
 	highlight clear LineNr
