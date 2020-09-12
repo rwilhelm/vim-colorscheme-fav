@@ -21,7 +21,7 @@ Plug 'rwilhelm/vim-colorscheme-fav'
 ### Select next/prev/random favourite colorscheme
 ```
 :ColorschemeFavNext
-:ColorschemePrev
+:ColorschemeFavPrev
 :ColorschemeFavRandom
 ```
 
