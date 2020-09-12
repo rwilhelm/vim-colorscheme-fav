@@ -6,9 +6,9 @@ let s:default = get(g:, 'colorscheme_fav#default', 'default')
 "
 " Create the favourite file if it does not exist
 "
-echo globpath(&rtp, s:file)
+echo "XXX " . globpath(&rtp, s:file)
 if empty((globpath(&rtp, s:file)))
-	echo "Creating file " . s:file . " " . globpath(&rtp, s:file)
+	"echo "Creating file " . s:file . " " . globpath(&rtp, s:file)
 	call writefile([], s:file, 'b')
 endif
 
