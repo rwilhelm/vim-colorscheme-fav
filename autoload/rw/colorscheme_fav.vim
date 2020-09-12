@@ -36,7 +36,7 @@ endfunction
 
 function! rw#colorscheme_fav#set(...)
 " {{{
-	let default = get([g:rw#fav_default], 1, 'default')
+	let default = get([g:rw#fav_default], 0, 'default')
 	echo default
 	let name = get(a:, 1, default)
 	let idx = get(a:, 2, -1)
