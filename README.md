@@ -58,7 +58,8 @@ function! ColorschemePostHook()
 endfunction
 ```
 
-### Variable Defaults
+### Variables
 ```viml
 	let g:colorscheme_fav#file = $VIMHOME . '/colorscheme-fav.lst'
+	let g:colorscheme_fav#default = 'base16-tomorrow-night'
 ```
