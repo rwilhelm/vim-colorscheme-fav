@@ -1,10 +1,11 @@
 let g:rw#colorscheme_fav#version = '0.3.1'
 
-let g:fav_file = $VIMHOME . '/colorscheme-fav.lst'
-let g:fav_default = 'base16-gruvbox-dark-hard'
+let g:rw#fav_file = $VIMHOME . '/colorscheme-fav.lst'
+let g:rw#fav_default = 'base16-gruvbox-dark-hard'
 
 function! rw#colorscheme_fav#next(...)
 " {{{
+	call rw#colorscheme_fav#pre()
 	call xolox#colorscheme_switcher#next()
 	call rw#colorscheme_fav#post()
 endfunction
@@ -12,13 +13,15 @@ endfunction
 
 function! rw#colorscheme_fav#prev(...)
 " {{{
-	call xolox#colorscheme_switcher#previous()
+	call rw#colorscheme_fav#pre()
+  call xolox#colorscheme_switcher#cycle(0)
 	call rw#colorscheme_fav#post()
 endfunction
 " }}}
 
 function! rw#colorscheme_fav#random(...)
 " {{{
+	call rw#colorscheme_fav#pre()
 	call xolox#colorscheme_switcher#random()
 	call rw#colorscheme_fav#post()
 endfunction
@@ -26,9 +29,10 @@ endfunction
 
 function! rw#colorscheme_fav#set(...)
 " {{{
-	let name = get(a:, 1, g:fav_default)
+	let name = get(a:, 1, g:rw#fav_default)
 	let idx = get(a:, 2, 0)
 	echo "Switching to colorscheme " . name . " [" . idx . "]"
+	call rw#colorscheme_fav#pre()
 	execute 'colorscheme ' . name
 	call rw#colorscheme_fav#post()
 endfunction
@@ -37,7 +41,7 @@ endfunction
 function! rw#colorscheme_fav#prevfav()
 " {{{
 	let cur = trim(execute('colorscheme'))
-	let favs = readfile(g:fav_file)
+	let favs = readfile(g:rw#fav_file)
 	let idx = index(favs, cur)
 	if idx == -1
 		let idx = index(uniq(sort(add(favs, cur))), cur) - 1
@@ -52,7 +56,7 @@ endfunction
 function! rw#colorscheme_fav#nextfav()
 " {{{
 	let cur = trim(execute('colorscheme'))
-	let favs = readfile(g:fav_file)
+	let favs = readfile(g:rw#fav_file)
 	let idx = index(favs, cur)
 	if idx == -1
 		let idx = index(uniq(sort(add(favs, cur))), cur) + 1
@@ -69,8 +73,8 @@ function! rw#colorscheme_fav#add()
 " {{{
 	let cur = trim(execute('colorscheme'))
 	echo "Saving colorscheme to favourites: " . cur
-	let favs = readfile(g:fav_file)
-	call writefile(uniq(sort(add(favs, cur))), g:fav_file, 'b')
+	let favs = readfile(g:rw#fav_file)
+	call writefile(uniq(sort(add(favs, cur))), g:rw#fav_file, 'b')
 endfunction
 " }}}
 
@@ -78,35 +82,28 @@ function! rw#colorscheme_fav#remove(...)
 " {{{
 	let cur = trim(execute('colorscheme'))
 	echo "Removing colorscheme " . cur . " from favourites"
-	let favs = readfile(g:fav_file)
+	let favs = readfile(g:rw#fav_file)
 	let idx = index(favs, cur)
 	if idx == -1
 		return
 	endif
 	call remove(favs, idx)
-	call writefile(favs, g:fav_file, 'b')
+	call writefile(favs, g:rw#fav_file, 'b')
+endfunction
+" }}}
+
+function! rw#colorscheme_fav#pre()
+" {{{
+	if exists('g:Colorscheme_fav_pre')
+		call g:Colorscheme_fav_pre()
+	endif
 endfunction
 " }}}
 
 function! rw#colorscheme_fav#post()
 " {{{
-	highlight clear LineNr
-	highlight clear SignColumn
-	highlight clear CursorLineNr
-	highlight clear SignifySignAdd
-	highlight clear SignifySignChange
-	highlight clear SignifySignDelete
-	highlight clear SignatureMarkText
-
-	highlight Error guifg=#ff0022
-	highlight LineNr guifg=#555555
-	highlight CursorLine guibg=#2B2620
-	highlight CursorLineNr guifg=#ffffff
-	highlight Folded guifg=#eeeeee guibg=none
-	highlight Search guifg=#00cc99 guibg=none
-	highlight SignifySignAdd guifg=#00cc99
-	highlight SignifySignChange guifg=#00cc00
-	highlight SignifySignDelete guifg=#cc00cc
-	highlight SignatureMarkText guifg=#eeeeee
+	if exists('g:Colorscheme_fav_post')
+		call g:Colorscheme_fav_post()
+	endif
 endfunction
 " }}}
