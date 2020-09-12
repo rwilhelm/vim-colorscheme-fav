@@ -4,6 +4,11 @@ endif
 
 let g:loaded_colorscheme_fav = 1
 
+"
+" Activate the default colorscheme
+" Set by overwriting g:rw#fav_default
+"
+
 call rw#colorscheme_fav#set()
 
 " Commands

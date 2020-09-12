@@ -8,9 +8,9 @@ let g:rw#fav_default = 'default'
 
 function! rw#colorscheme_fav#next(...)
 " {{{
-	call pre_hook()
+	call s:pre_hook()
   call xolox#colorscheme_switcher#cycle(1)
-	call post_hook()
+	call s:post_hook()
 endfunction
 " }}}
 
@@ -36,8 +36,11 @@ endfunction
 
 function! rw#colorscheme_fav#set(...)
 " {{{
-	let name = get(a:, 1, g:rw#fav_default)
-	echo "Switching to colorscheme " . name . " [" . a:2 . "]"
+	let default = get([g:rw#fav_default], 1, 'default')
+	echo default
+	let name = get(a:, 1, default)
+	let idx = get(a:, 2, -1)
+	echo "Switching to colorscheme " . name . " [" . idx . "]"
 	call s:pre_hook()
 	execute 'colorscheme ' . name
 	call s:post_hook()
