@@ -7,6 +7,8 @@
 
 ### Installation with [plug](https://github.com/junegunn/vim-plug):
 
+Requires [vim-colorscheme-switcher](https://github.com/xolox/vim-colorscheme-switcher)!
+
 ```
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'rwilhelm/vim-colorscheme-fav'
